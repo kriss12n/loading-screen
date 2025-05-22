@@ -5,14 +5,14 @@ const wallpapers = [
   '/loading-screen/assets/wallpapers/bg3.webp',
   '/loading-screen/assets/wallpapers/bg4.webp',
   '/loading-screen/assets/wallpapers/bg1.webp',
-];
+] as const;
 
 const gifs = [
   '/loading-screen/assets/gifs/mumei.gif',
   '/loading-screen/assets/gifs/nico.gif',
   '/loading-screen/assets/gifs/santaills.gif',
   '/loading-screen/assets/gifs/sasha.gif',
-];
+] as const;
 
 const kriss = '/loading-screen/assets/gifs/kriss.gif';
 const CHANGE_INTERVAL = 10000;
@@ -21,8 +21,11 @@ const TRANSITION_DURATION = 1000;
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
-  const containerRef = useRef(null);
-  const currentElements = useRef({
+  const containerRef = useRef<HTMLDivElement>(null);
+  const currentElements = useRef<{
+    wallpaper: HTMLDivElement | null;
+    gif: HTMLImageElement | null;
+  }>({
     wallpaper: null,
     gif: null
   });
@@ -35,12 +38,14 @@ function App() {
     });
     
     // Guardar referencia a los elementos iniciales
-    currentElements.current.wallpaper = containerRef.current.querySelector('.wallpaper');
-    currentElements.current.gif = containerRef.current.querySelector('.animated-gif');
+    currentElements.current.wallpaper = containerRef.current?.querySelector('.wallpaper') ?? null;
+    currentElements.current.gif = containerRef.current?.querySelector('.animated-gif') || null;
   }, []);
 
   useEffect(() => {
     const changeContent = () => {
+      if (!containerRef.current) return;
+
       // Crear elementos para el próximo contenido
       const nextWallpaper = document.createElement('div');
       const nextGif = document.createElement('img');
@@ -105,7 +110,7 @@ function App() {
 
     const interval = setInterval(changeContent, CHANGE_INTERVAL);
     return () => clearInterval(interval);
-  }, [nextIndex]);
+  }, [nextIndex, currentIndex]); // Añadimos currentIndex a las dependencias
 
   return (
     <div ref={containerRef} className="fixed inset-0 overflow-hidden">
