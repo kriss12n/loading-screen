@@ -1,20 +1,20 @@
 import { useEffect, useState, useRef } from 'react';
 
 const wallpapers = [
-  '/assets/wallpapers/bg2.webp',
-  '/assets/wallpapers/bg3.webp',
-  '/assets/wallpapers/bg4.webp',
-  '/assets/wallpapers/bg1.webp',
+  '/loading-screen/assets/wallpapers/bg2.webp',
+  '/loading-screen/assets/wallpapers/bg3.webp',
+  '/loading-screen/assets/wallpapers/bg4.webp',
+  '/loading-screen/assets/wallpapers/bg1.webp',
 ];
 
 const gifs = [
-  '/assets/gifs/mumei.gif',
-  '/assets/gifs/nico.gif',
-  '/assets/gifs/santaills.gif',
-  '/assets/gifs/sasha.gif',
+  '/loading-screen/assets/gifs/mumei.gif',
+  '/loading-screen/assets/gifs/nico.gif',
+  '/loading-screen/assets/gifs/santaills.gif',
+  '/loading-screen/assets/gifs/sasha.gif',
 ];
 
-const kriss = '/assets/gifs/kriss.gif';
+const kriss = '/loading-screen/assets/gifs/kriss.gif';
 const CHANGE_INTERVAL = 10000;
 const TRANSITION_DURATION = 1000;
 
