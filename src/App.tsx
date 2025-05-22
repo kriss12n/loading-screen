@@ -87,10 +87,14 @@ function App() {
       setTimeout(() => {
         // Eliminar elementos antiguos específicamente
         if (currentElements.current.wallpaper && currentElements.current.wallpaper.parentNode) {
-          containerRef.current.removeChild(currentElements.current.wallpaper);
+          if (containerRef.current && currentElements.current.wallpaper) {
+            containerRef.current.removeChild(currentElements.current.wallpaper);
+          }
         }
         if (currentElements.current.gif && currentElements.current.gif.parentNode) {
-          containerRef.current.removeChild(currentElements.current.gif);
+          if (containerRef.current && currentElements.current.gif) {
+            containerRef.current.removeChild(currentElements.current.gif);
+          }
         }
         
         // Actualizar referencias a los elementos actuales
